@@ -1,0 +1,123 @@
+
+# Automatic Car Number Plate Detection and Recognition Using YOLOv3 and Pytesseract
+
+This project aims to implement a real-time **Automatic Number Plate Detection and Recognition** system using **YOLOv3** for detection and **Pytesseract** for Optical Character Recognition (OCR). It was conducted as part of a Bachelor's thesis.
+
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Technology Stack](#technology-stack)
+3. [License Plate Detection](#license-plate-detection)
+    - [Single Car Detection](#single-car-detection)
+    - [Multiple Car Detection](#multiple-car-detection)
+4. [ROI Extraction and Post-Processing](#roi-extraction-and-post-processing)
+5. [Detection Results in Various Conditions](#detection-results)
+6. [License Plate Recognition Using OCR](#license-plate-recognition-using-ocr)
+7. [Real-time License Plate Detection](#real-time-license-plate-detection)
+    - [Video Demonstration](#video-demonstration)
+    - [Webcam Detection](#webcam-detection)
+8. [Web Interface](#web-interface)
+9. [Future Work](#future-work)
+
+---
+
+## Project Overview
+
+This system uses **YOLOv3** to detect the location of car license plates, followed by image processing with **OpenCV** to enhance the quality of the detected plates for character recognition. **Pytesseract OCR** is then applied to extract text from the plates. 
+
+The system is also capable of performing in real-time and can be integrated with a web interface for user interaction.
+
+---
+
+## Technology Stack
+
+| Tool                  | Description                                                |
+|-----------------------|------------------------------------------------------------|
+| **YOLOv3**            | Real-time object detection algorithm specialized for license plates. |
+| **OpenCV**            | Computer vision library for processing images and videos.  |
+| **Python**            | Language used for algorithm development and system integration. |
+| **Flask**             | Web framework for building the project’s web application.   |
+| **Pytesseract OCR**    | Optical Character Recognition library for extracting text from license plates. |
+| **Visual Studio Code** | IDE used for development.                                  |
+| **Google Colab**       | Cloud-based platform for collaborative Python development. |
+
+---
+
+## License Plate Detection
+
+YOLOv3 was trained on a custom dataset of license plates and successfully detects plates in both single and multiple car scenarios.
+
+### Single Car Detection
+Figure 1:  
+![Single Car](https://github.com/jamalabdi2/Car-number-plate-detection-and-recognition-using-Yolov3-and-Pytesseract/assets/113813239/4214bafc-f636-4b70-8fc8-4753dbcfd888)
+
+### Multiple Car Detection
+Figure 2:  
+![Multiple Cars](https://github.com/jamalabdi2/Car-number-plate-detection-and-recognition-using-Yolov3-and-Pytesseract/assets/113813239/f40e5e11-4849-4ec5-9308-90396fb57d84)
+
+---
+
+## ROI Extraction and Post-Processing
+
+After detecting a license plate, several image processing steps are carried out to improve OCR accuracy. These include:
+
+1. **Grayscale Conversion**: Reduces computational complexity by converting the image to grayscale.
+2. **Gaussian Blur**: Suppresses noise using a 7x7 filter.
+3. **Color Inversion**: Increases contrast through bitwise inversion.
+4. **Binarization**: Converts the grayscale image into binary format using a threshold.
+5. **Morphological Dilation**: Enhances license plate boundaries using a 3x3 rectangular kernel.
+
+The following image illustrates these steps:
+
+![Processing Steps](https://github.com/jamalabdi2/Car-number-plate-detection-and-recognition-using-Yolov3-and-Pytesseract/assets/113813239/5c57b3be-de3d-4482-8ed5-998de0b34c10)
+
+---
+
+## Detection Results
+
+The system demonstrates robust detection in various lighting conditions, angles, and noise levels. Below is an example of the model’s performance under different environmental conditions:
+
+![Environmental Conditions](https://github.com/jamalabdi2/Car-number-plate-detection-and-recognition-using-Yolov3-and-Pytesseract/assets/113813239/4afc073d-27f4-49d5-8e75-7718ee3b54a9)
+
+---
+
+## License Plate Recognition Using OCR
+
+Once the license plate is detected and preprocessed, **Pytesseract** extracts the alphanumeric characters. For non-English plates (e.g., Korean), Pytesseract is configured to use the appropriate language settings.
+
+![Text Extraction](https://github.com/jamalabdi2/Car-number-plate-detection-and-recognition-using-Yolov3-and-Pytesseract/assets/113813239/5277c253-096f-44cc-a946-4b3847841ffd)
+
+---
+
+## Real-time License Plate Detection
+
+### Video Demonstration
+
+The system can detect license plates in real-time using video streams.
+
+![Video Demo](https://github.com/jamalabdi2/Car-number-plate-detection-and-recognition-using-Yolov3-and-Pytesseract/assets/113813239/e4177189-e3c6-4ab4-a26a-661183b520b9)
+
+### Webcam Detection
+
+Real-time detection can also be done using a webcam. Flask is used to stream the live feed to a browser, where YOLOv3 processes the feed to detect plates.
+
+![Webcam Detection](https://github.com/jamalabdi2/Car-number-plate-detection-and-recognition-using-Yolov3-and-Pytesseract/assets/113813239/f5c08982-edac-4b99-b8dc-25c9013100c7)
+
+---
+
+## Web Interface
+
+The project includes a simple web interface developed using **Flask**, **HTML**, and **CSS**. Users can upload images and receive the detected license plate text.
+
+![Web Interface](https://github.com/jamalabdi2/Car-number-plate-detection-and-recognition-using-Yolov3-and-Pytesseract/assets/113813239/7472bbf6-5e28-4640-88e4-bcdec35fe123)
+
+---
+
+## Future Work
+
+To improve the system further, the following are planned for future iterations:
+
+1. Implementing single-character recognition using deep learning models.
+2. Exploring **CRNN** and **LSTM** for more robust character recognition.
+3. Integrating the system with mobile platforms such as smartphones.
+
+Although this project was initially developed for Korean license plates, it can easily be adapted for license plates from other countries.
